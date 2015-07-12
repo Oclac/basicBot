@@ -1693,7 +1693,7 @@
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
-                        API.sendChat(basicBot.chat.autowoot);
+                        API.sendChat("Checkout https://rcs.radiant.dj/ for AutoWoot, AutoJoin, and our Community's Custom Theme.");
                     }
                 }
             },
@@ -2140,20 +2140,6 @@
                 }
             },
 
-            fbCommand: {
-                command: 'fb',
-                rank: 'user',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        if (typeof basicBot.settings.fbLink === "string")
-                            API.sendChat(subChat(basicBot.chat.facebook, {link: basicBot.settings.fbLink}));
-                    }
-                }
-            },
-
             filterCommand: {
                 command: 'filter',
                 rank: 'bouncer',
@@ -2212,75 +2198,6 @@
                             return API.sendChat(subChat(basicBot.chat.ghosting, {name1: chat.un, name2: name}));
                         }
                         else API.sendChat(subChat(basicBot.chat.notghosting, {name1: chat.un, name2: name}));
-                    }
-                }
-            },
-
-            gifCommand: {
-                command: ['gif', 'giphy'],
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        var msg = chat.message;
-                        if (msg.length !== cmd.length) {
-                            function get_id(api_key, fixedtag, func)
-                            {
-                                $.getJSON(
-                                    "https://tv.giphy.com/v1/gifs/random?",
-                                    {
-                                        "format": "json",
-                                        "api_key": api_key,
-                                        "rating": rating,
-                                        "tag": fixedtag
-                                    },
-                                    function(response)
-                                    {
-                                        func(response.data.id);
-                                    }
-                                    )
-                            }
-                            var api_key = "dc6zaTOxFJmzC"; // public beta key
-                            var rating = "pg-13"; // PG 13 gifs
-                            var tag = msg.substr(cmd.length + 1);
-                            var fixedtag = tag.replace(/ /g,"+");
-                            var commatag = tag.replace(/ /g,", ");
-                            get_id(api_key, tag, function(id) {
-                                if (typeof id !== 'undefined') {
-                                    API.sendChat(subChat(basicBot.chat.validgiftags, {name: chat.un, id: id, tags: commatag}));
-                                } else {
-                                    API.sendChat(subChat(basicBot.chat.invalidgiftags, {name: chat.un, tags: commatag}));
-                                }
-                            });
-                        }
-                        else {
-                            function get_random_id(api_key, func)
-                            {
-                                $.getJSON(
-                                    "https://tv.giphy.com/v1/gifs/random?",
-                                    {
-                                        "format": "json",
-                                        "api_key": api_key,
-                                        "rating": rating
-                                    },
-                                    function(response)
-                                    {
-                                        func(response.data.id);
-                                    }
-                                    )
-                            }
-                            var api_key = "dc6zaTOxFJmzC"; // public beta key
-                            var rating = "pg-13"; // PG 13 gifs
-                            get_random_id(api_key, function(id) {
-                                if (typeof id !== 'undefined') {
-                                    API.sendChat(subChat(basicBot.chat.validgifrandom, {name: chat.un, id: id}));
-                                } else {
-                                    API.sendChat(subChat(basicBot.chat.invalidgifrandom, {name: chat.un}));
-                                }
-                            });
-                        }
                     }
                 }
             },
@@ -2832,7 +2749,7 @@
 
             pingCommand: {
                 command: 'ping',
-                rank: 'user',
+                rank: 'residentdj',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -2928,21 +2845,6 @@
                         else {
                             basicBot.settings.etaRestriction = !basicBot.settings.etaRestriction;
                             return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.etarestriction}));
-                        }
-                    }
-                }
-            },
-
-            rouletteCommand: {
-                command: 'roulette',
-                rank: 'mod',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        if (!basicBot.room.roulette.rouletteStatus) {
-                            basicBot.room.roulette.startRoulette();
                         }
                     }
                 }
@@ -3619,20 +3521,6 @@
                                 API.sendChat(subChat(basicBot.chat.whois, {name1: chat.un, name2: name, id: id, avatar: avatar, profile: profile, language: language, level: level, joined: joined, rank: rank}));
                             }
                         }
-                    }
-                }
-            },
-
-            youtubeCommand: {
-                command: 'youtube',
-                rank: 'user',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                        if (typeof basicBot.settings.youtubeLink === "string")
-                            API.sendChat(subChat(basicBot.chat.youtube, {name: chat.un, link: basicBot.settings.youtubeLink}));
                     }
                 }
             }
