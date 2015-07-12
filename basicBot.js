@@ -248,65 +248,67 @@
         retrieveSettings: retrieveSettings,
         retrieveFromStorage: retrieveFromStorage,
         settings: {
-             botName: "basicBot",
-        language: "english",
-        chatLink: "https://rawgit.com/Yemasthui/basicBot/master/lang/en.json",
-        startupCap: 1, // 1-200
-        startupVolume: 0, // 0-100
-        startupEmoji: false, // true or false
-        autowoot: false,
-        smartSkip: false,
-        cmdDeletion: true,
-        maximumAfk: 120,
-        afkRemoval: false,
-        maximumDc: 60,
-        bouncerPlus: true,
-        blacklistEnabled: false,
-        lockdownEnabled: false,
-        lockGuard: false,
-        maximumLocktime: 10,
-        cycleGuard: true,
-        maximumCycletime: 10,
-        voteSkip: false,
-        voteSkipLimit: 10,
-        historySkip: false,
-        timeGuard: true,
-        maximumSongLength: 7,
-        autodisable: false,
-        commandCooldown: 3,
-        usercommandsEnabled: true,
-        skipPosition: 5,
-        skipReasons: [
-            ["theme", "This song does not fit the room theme. "],
-            ["op", "This song is on the OP list. "],
-            ["history", "This song is in the history. "],
-            ["mix", "You played a mix, which is against the rules. "],
-            ["sound", "The song you played had bad sound quality or no sound. "],
-            ["nsfw", "The song you contained was NSFW (image or sound). "],
-            ["unavailable", "The song you played was not available for some users. "]
-        ],
-        afkpositionCheck: 15,
-        afkRankCheck: "ambassador",
-        motdEnabled: false,
-        motdInterval: 5,
-        motd: "Temporary Message of the Day",
-        filterChat: false,
-        etaRestriction: false,
-        welcome: false,
-        opLink: "http://www.umcookies.com/nightcore-331/blacklist.php",
-        rulesLink: "http://www.nightcore-331.net/viewtopic.php?f=6&t=624",
-        themeLink: "http://www.nightcore-331.net/viewtopic.php?f=6&t=626",
-        fbLink: null,
-        youtubeLink: null,
-        website: "http://www.nightcore-331.net/index.php",
-        intervalMessages: [],
-        messageInterval: 5,
-        songstats: false,
-        commandLiteral: "!",
-        blacklists: {
-            NSFW: "https://rawgit.com/" + fork + "/basicBot-customization/master/blacklists/NSFWlist.json",
-            OP: "https://rawgit.com/" + fork + "/basicBot-customization/master/blacklists/OPlist.json",
-            BANNED: "https://rawgit.com/" + fork + "/basicBot-customization/master/blacklists/BANNEDlist.json,
+            botName: "basicBot",
+            language: "english",
+            chatLink: "https://rawgit.com/Yemasthui/basicBot/master/lang/en.json",
+            roomLock: false, // Requires an extension to re-load the script
+            startupCap: 1, // 1-200
+            startupVolume: 0, // 0-100
+            startupEmoji: false, // true or false
+            autowoot: true,
+            autoskip: false,
+            smartSkip: true,
+            cmdDeletion: true,
+            maximumAfk: 120,
+            afkRemoval: true,
+            maximumDc: 60,
+            bouncerPlus: true,
+            blacklistEnabled: true,
+            lockdownEnabled: false,
+            lockGuard: false,
+            maximumLocktime: 10,
+            cycleGuard: true,
+            maximumCycletime: 10,
+            voteSkip: false,
+            voteSkipLimit: 10,
+            historySkip: false,
+            timeGuard: true,
+            maximumSongLength: 10,
+            autodisable: true,
+            commandCooldown: 30,
+            usercommandsEnabled: true,
+            skipPosition: 3,
+            skipReasons: [
+                ["theme", "This song does not fit the room theme. "],
+                ["op", "This song is on the OP list. "],
+                ["history", "This song is in the history. "],
+                ["mix", "You played a mix, which is against the rules. "],
+                ["sound", "The song you played had bad sound quality or no sound. "],
+                ["nsfw", "The song you contained was NSFW (image or sound). "],
+                ["unavailable", "The song you played was not available for some users. "]
+            ],
+            afkpositionCheck: 15,
+            afkRankCheck: "ambassador",
+            motdEnabled: false,
+            motdInterval: 5,
+            motd: "Temporary Message of the Day",
+            filterChat: true,
+            etaRestriction: false,
+            welcome: true,
+            opLink: null,
+            rulesLink: null,
+            themeLink: null,
+            fbLink: null,
+            youtubeLink: null,
+            website: null,
+            intervalMessages: [],
+            messageInterval: 5,
+            songstats: true,
+            commandLiteral: "!",
+            blacklists: {
+                NSFW: "https://rawgit.com/Yemasthui/basicBot-customization/master/blacklists/NSFWlist.json",
+                OP: "https://rawgit.com/Yemasthui/basicBot-customization/master/blacklists/OPlist.json",
+                BANNED: "https://rawgit.com/Yemasthui/basicBot-customization/master/blacklists/BANNEDlist.json"
             }
         },
         room: {
@@ -1693,7 +1695,7 @@
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
-                        API.sendChat("Checkout https://rcs.radiant.dj/ for AutoWoot, AutoJoin, and our Community's Custom Theme.");
+                        API.sendChat("Checkout https://rcs.radiant.dj/ for AutoWoot, AutoJoin, and our Community's Custom Theme.")
                     }
                 }
             },
@@ -1713,7 +1715,7 @@
 
             ballCommand: {
                 command: ['8ball', 'ask'],
-                rank: 'user',
+                rank: 'host',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -1906,7 +1908,7 @@
 
             cookieCommand: {
                 command: 'cookie',
-                rank: 'user',
+                rank: 'cohost',
                 type: 'startsWith',
                 getCookie: function (chat) {
                     var c = Math.floor(Math.random() * basicBot.chat.cookies.length);
@@ -2140,6 +2142,20 @@
                 }
             },
 
+            fbCommand: {
+                command: 'fb',
+                rank: 'user',
+                type: 'exact',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                        if (typeof basicBot.settings.fbLink === "string")
+                            API.sendChat(subChat(basicBot.chat.facebook, {link: basicBot.settings.fbLink}));
+                    }
+                }
+            },
+
             filterCommand: {
                 command: 'filter',
                 rank: 'bouncer',
@@ -2181,7 +2197,7 @@
 
             ghostbusterCommand: {
                 command: 'ghostbuster',
-                rank: 'user',
+                rank: 'residentdj',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -2198,6 +2214,75 @@
                             return API.sendChat(subChat(basicBot.chat.ghosting, {name1: chat.un, name2: name}));
                         }
                         else API.sendChat(subChat(basicBot.chat.notghosting, {name1: chat.un, name2: name}));
+                    }
+                }
+            },
+
+            gifCommand: {
+                command: ['gif', 'giphy'],
+                rank: 'user',
+                type: 'startsWith',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                        var msg = chat.message;
+                        if (msg.length !== cmd.length) {
+                            function get_id(api_key, fixedtag, func)
+                            {
+                                $.getJSON(
+                                    "https://tv.giphy.com/v1/gifs/random?",
+                                    {
+                                        "format": "json",
+                                        "api_key": api_key,
+                                        "rating": rating,
+                                        "tag": fixedtag
+                                    },
+                                    function(response)
+                                    {
+                                        func(response.data.id);
+                                    }
+                                    )
+                            }
+                            var api_key = "dc6zaTOxFJmzC"; // public beta key
+                            var rating = "pg-13"; // PG 13 gifs
+                            var tag = msg.substr(cmd.length + 1);
+                            var fixedtag = tag.replace(/ /g,"+");
+                            var commatag = tag.replace(/ /g,", ");
+                            get_id(api_key, tag, function(id) {
+                                if (typeof id !== 'undefined') {
+                                    API.sendChat(subChat(basicBot.chat.validgiftags, {name: chat.un, id: id, tags: commatag}));
+                                } else {
+                                    API.sendChat(subChat(basicBot.chat.invalidgiftags, {name: chat.un, tags: commatag}));
+                                }
+                            });
+                        }
+                        else {
+                            function get_random_id(api_key, func)
+                            {
+                                $.getJSON(
+                                    "https://tv.giphy.com/v1/gifs/random?",
+                                    {
+                                        "format": "json",
+                                        "api_key": api_key,
+                                        "rating": rating
+                                    },
+                                    function(response)
+                                    {
+                                        func(response.data.id);
+                                    }
+                                    )
+                            }
+                            var api_key = "dc6zaTOxFJmzC"; // public beta key
+                            var rating = "pg-13"; // PG 13 gifs
+                            get_random_id(api_key, function(id) {
+                                if (typeof id !== 'undefined') {
+                                    API.sendChat(subChat(basicBot.chat.validgifrandom, {name: chat.un, id: id}));
+                                } else {
+                                    API.sendChat(subChat(basicBot.chat.invalidgifrandom, {name: chat.un}));
+                                }
+                            });
+                        }
                     }
                 }
             },
@@ -2845,6 +2930,21 @@
                         else {
                             basicBot.settings.etaRestriction = !basicBot.settings.etaRestriction;
                             return API.sendChat(subChat(basicBot.chat.toggleon, {name: chat.un, 'function': basicBot.chat.etarestriction}));
+                        }
+                    }
+                }
+            },
+
+            rouletteCommand: {
+                command: 'roulette',
+                rank: 'cohost',
+                type: 'exact',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                        if (!basicBot.room.roulette.rouletteStatus) {
+                            basicBot.room.roulette.startRoulette();
                         }
                     }
                 }
@@ -3521,6 +3621,20 @@
                                 API.sendChat(subChat(basicBot.chat.whois, {name1: chat.un, name2: name, id: id, avatar: avatar, profile: profile, language: language, level: level, joined: joined, rank: rank}));
                             }
                         }
+                    }
+                }
+            },
+
+            youtubeCommand: {
+                command: 'youtube',
+                rank: 'user',
+                type: 'exact',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                        if (typeof basicBot.settings.youtubeLink === "string")
+                            API.sendChat(subChat(basicBot.chat.youtube, {name: chat.un, link: basicBot.settings.youtubeLink}));
                     }
                 }
             }
