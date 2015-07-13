@@ -3626,7 +3626,7 @@
             },
 
             youtubeCommand: {
-                command: 'youtube',
+                command: 'bouncer',
                 rank: 'user',
                 type: 'exact',
                 functionality: function (chat, cmd) {
@@ -3634,7 +3634,7 @@
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
                         if (typeof basicBot.settings.youtubeLink === "string")
-                            API.sendChat(subChat(basicBot.chat.youtube, {name: chat.un, link: basicBot.settings.youtubeLink}));
+                            API.sendChat("Interested in applying for Bouncer? Visit here: https://www.nightcore-331.net/viewforum.php?f=65 and make sure you meet all of the requirements first!");
                     }
                 }
             }
