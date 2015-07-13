@@ -3535,7 +3535,7 @@
             },
 
             websiteCommand: {
-                command: 'website',
+                command: 'forum',
                 rank: 'user',
                 type: 'exact',
                 functionality: function (chat, cmd) {
