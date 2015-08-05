@@ -9,7 +9,7 @@
 
     /*window.onerror = function() {
         var room = JSON.parse(localStorage.getItem("basicBotRoom"));
-        window.location = 'https://54.88.12.141' + room.name;
+        window.location = 'https://plug.dj' + room.name;
     };*/
 
     API.getWaitListPosition = function(id){
