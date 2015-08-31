@@ -2295,7 +2295,7 @@
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
                         var link = "(Updated link coming soon)";
-                        API.sendChat("Help remind Trg to change this to the right photo");
+                        API.sendChat("http://i.imgur.com/ZeRR07N.png");
                     }
                 }
             },
@@ -3645,7 +3645,7 @@
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
                         if (typeof basicBot.settings.youtubeLink === "string")
-                            API.sendChat("Remind That random guy to update this command!");
+                            API.sendChat("here Interested in applying for Resident DJ? Visit here: https://www.nightcore-331.net/viewforum.php?f=43 and make sure you meet all of the requirements first!");
                     }
                 }
             }
