@@ -248,7 +248,7 @@
         retrieveSettings: retrieveSettings,
         retrieveFromStorage: retrieveFromStorage,
         settings: {
-            botName: "basicBot",
+            botName: "NekoBot",
             language: "english",
             chatLink: "https://rawgit.com/Yemasthui/basicBot/master/lang/en.json",
             roomLock: false, // Requires an extension to re-load the script
@@ -1498,7 +1498,7 @@
 
             activeCommand: {
                 command: 'active',
-                rank: 'bouncer',
+                rank: 'host',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -1575,7 +1575,7 @@
 
             afkremovalCommand: {
                 command: 'afkremoval',
-                rank: 'mod',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -1599,7 +1599,7 @@
 
             afkresetCommand: {
                 command: 'afkreset',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -1618,7 +1618,7 @@
 
             afktimeCommand: {
                 command: 'afktime',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -1647,7 +1647,7 @@
 
             autodisableCommand: {
                 command: 'autodisable',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -1668,7 +1668,7 @@
 
             autoskipCommand: {
                 command: 'autoskip',
-                rank: 'mod',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -1881,7 +1881,7 @@
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
-                        API.sendChat(subChat(basicBot.chat.commandslink, {botname: basicBot.settings.botName, link: basicBot.cmdLink}));
+                        API.sendChat("This robot does not yet have a command list , ask a staff member for the commands");
                     }
                 }
             },
@@ -1908,7 +1908,7 @@
 
             cookieCommand: {
                 command: 'cookie',
-                rank: 'cohost',
+                rank: 'manager',
                 type: 'startsWith',
                 getCookie: function (chat) {
                     var c = Math.floor(Math.random() * basicBot.chat.cookies.length);
@@ -2196,7 +2196,7 @@
 
             ghostbusterCommand: {
                 command: 'ghostbuster',
-                rank: 'residentdj',
+                rank: 'manager',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -2219,7 +2219,7 @@
 
             gifCommand: {
                 command: ['gif', 'giphy'],
-                rank: 'cohost',
+                rank: 'manager',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -2295,7 +2295,7 @@
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
                         var link = "(Updated link coming soon)";
-                        API.sendChat(subChat(basicBot.chat.starterhelp, {link: link}));
+                        API.sendChat("Help remind Trg to change this to the right photo");
                     }
                 }
             },
@@ -2451,7 +2451,7 @@
 
             leaveCommand: {
                 command: 'leave',
-                rank: 'user',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -2468,7 +2468,7 @@
 
             linkCommand: {
                 command: 'link',
-                rank: 'user',
+                rank: 'resdj',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -2826,7 +2826,7 @@
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
                         if (typeof basicBot.settings.opLink === "string")
-                            return API.sendChat(subChat(basicBot.chat.oplist, {link: basicBot.settings.opLink}));
+                            return API.sendChat("Remind Trg to change this command!");
                     }
                 }
             },
@@ -2865,7 +2865,7 @@
 
             reloadCommand: {
                 command: 'reload',
-                rank: 'admin',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3079,7 +3079,7 @@
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
-                        API.sendChat('/me This bot was created by ' + botCreator + ', but is now maintained by ' + botMaintainer + ".");
+                        API.sendChat("This is a basic bot , it serves as the backup bot. Thank That random guy for making the changes!");
                     }
                 }
             },
@@ -3259,7 +3259,7 @@
 
             timeguardCommand: {
                 command: 'timeguard',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3280,7 +3280,7 @@
 
             toggleblCommand: {
                 command: 'togglebl',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3298,7 +3298,7 @@
 
             togglemotdCommand: {
                 command: 'togglemotd',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3318,7 +3318,7 @@
 
             togglevoteskipCommand: {
                 command: 'togglevoteskip',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3338,7 +3338,7 @@
 
             unbanCommand: {
                 command: 'unban',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3389,7 +3389,7 @@
 
             unmuteCommand: {
                 command: 'unmute',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3484,7 +3484,7 @@
 
             voteratioCommand: {
                 command: 'voteratio',
-                rank: 'bouncer',
+                rank: 'manager',
                 type: 'startsWith',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3527,7 +3527,7 @@
 
             welcomeCommand: {
                 command: 'welcome',
-                rank: 'mod',
+                rank: 'manager',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -3637,7 +3637,7 @@
             },
 
             youtubeCommand: {
-                command: 'bouncer',
+                command: 'resdj',
                 rank: 'user',
                 type: 'exact',
                 functionality: function (chat, cmd) {
@@ -3645,7 +3645,7 @@
                     if (!basicBot.commands.executable(this.rank, chat)) return void (0);
                     else {
                         if (typeof basicBot.settings.youtubeLink === "string")
-                            API.sendChat("Interested in applying for Bouncer? Visit here: https://www.nightcore-331.net/viewforum.php?f=65 and make sure you meet all of the requirements first!");
+                            API.sendChat("Remind That random guy to update this command!");
                     }
                 }
             }
